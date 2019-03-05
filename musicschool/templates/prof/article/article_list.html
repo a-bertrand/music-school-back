@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% block content %}
+    <a class="btn btn-primary" href='{% url "article-add" %}'>
+        Ajouter un article
+    </a>
+    <table id="example" class="table table-striped table-bordered" style="width:100%">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Name</th>
+                <th>Catégories</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for article in  articles %}
+                <tr>
+                    <td>{{article.id}}</td>
+                    <td>{{article.title}}</td>
+                    <td>
+                        {% for category in article.categories.all %}
+                            {{category.name}},
+                        {% endfor %}
+                    </td>
+                    <td>
+                        <a href="{% url 'article-detail' article.id %}">voir</a> /
+                        <a href="{%url 'article-edit' article.id %}">edit</a> / 
+                        <a href="{% url 'article-del' article.id %}">del</a> 
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

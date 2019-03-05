@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block title %}Ajouter un article{% endblock %}
+{% block content %}
+	<form method="post" novalidate>
+		{% csrf_token %}
+		<fieldset>
+			{{ article_form|crispy }}
+		</fieldset>
+		<button type="submit" class="btn btn-success">Valider l'article</button>
+	</form>
+{% endblock %}

@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% block content %}
+    <a class="btn btn-primary" href='{% url "media-add" %}'>
+        Ajouter un media
+    </a>
+    <table id="example" class="table table-striped table-bordered" style="width:100%">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Nom</th>
+                <th>Type</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for media in  medias %}
+                <tr>
+                    <td>{{media.id}}</td>
+                    <td>{{media.name}}</td>
+                    <td>
+                        {% if media.video %}
+                            video 
+                        {% endif %}
+                        {% if media.image %}
+                            image 
+                        {% endif %}
+                        {% if media.pdf %}
+                            pdf 
+                        {% endif %}
+                        {% if media.audio %}
+                            audio 
+                        {% endif %}
+                        {% if media.guitarpro %}
+                            guitarpro 
+                        {% endif %}
+                        {% if media.youtubeurl %}
+                            youtubeurl 
+                        {% endif %}
+                        {% if media.text %}
+                            text 
+                        {% endif %}
+                    </td>
+                    <td>
+                        <a href="{% url 'media-edit' media.id %}">edit</a> / 
+                        <a href="{% url 'media-del' media.id %}">del</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

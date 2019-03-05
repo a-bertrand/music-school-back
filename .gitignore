@@ -1,0 +1,22 @@
+### OSX ###
+.DS_Store
+.AppleDouble
+.LSOverride
+
+### Python ###
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+
+include/
+bin/
+.vscode/
+tcl/
+Lib/
+musicschool/Lib
+musicschool/include
+musicschool/db.sqlite3
+musicschool/musicschool__pycache__
+musicschool/musicschool/media/
+musicschool/musicschool/settings/dev.py
+musicschool/musicschool/settings/prod.py

@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block title %}Ajouter un utilisateur{% endblock %}
+{% block content %}
+	<form method="post" novalidate  >
+		{% csrf_token %}
+		<fieldset>
+			{{ user_form|crispy }}
+            <div class="form-group">
+                <p>
+                    Valider la date pour un an de cours 
+                </p>
+                <div class="form-check">
+                    <label>
+                        <input 
+                            name="activate_student" 
+                            type="checkbox" 
+                            class="form-check-input"
+                            {% if erp_user.is_activate %}
+                                checked
+                            {% endif %}
+                        >
+                        Activer le compte  : 
+                    </label>
+                </div>
+            </div>
+            <hr>
+            <div class="form-check">
+                <label>
+                    <input name="is_lesson_date" type="checkbox" class="form-check-input">
+                    Creer un an de leçon pour la Date : 
+                </label>
+            </div>
+            <input name="lesson_date" type="date" class="form-control ">
+            {% if erp_user.lessons %}
+            <p>Les prochains cours : </p>
+            <div class="row">
+                {% for date_lesson in erp_user.lessons.get_next_lesson %}
+                    <div class="col-md-3">
+                        {{date_lesson.date |date:"l d F Y"}}
+                    </div>
+                {% endfor %}
+            </div>
+            {% endif %}
+            <hr>
+		</fieldset>
+		<button type="submit" class="btn btn-success">Valider l'utilisateur</button>
+	</form>
+{% endblock %}

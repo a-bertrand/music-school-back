@@ -1,0 +1,17 @@
+{% block content %}
+	<nav class="navbar navbar-expand-lg navbar-light bg-light margin-bottom-50">
+		<a class="navbar-brand" href="{% url 'home' %}">
+			Ecole de musique d'Ancenis
+		</a>
+		<div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+			<ul class="nav ">
+				{% if user.is_authenticated %}
+					<li class="nav-item active">
+						<a class="nav-link" href="{% url 'logout' %}">Se déconnecter <span class="sr-only">Se déconnecter</span></a>
+					</li>
+				{% else %}
+			{% endif %}
+			</ul>
+		</div>
+	</nav>
+{% endblock %}

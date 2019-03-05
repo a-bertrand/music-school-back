@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block title %}Ajouter un utilisateur{% endblock %}
+{% block content %}
+	<form method="post" novalidate  enctype="multipart/form-data">
+		{% csrf_token %}
+		<fieldset>
+            <p>
+                pour Youtube inscrire que le code genre : https://www.youtube.com/embed/kPiJMrlEXUA
+                inscrire que : kPiJMrlEXUA
+            <p>
+			{{ media_form|crispy }}
+		</fieldset>
+		<button type="submit" class="btn btn-success">Valider le nouveau media</button>
+	</form>
+{% endblock %}

@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% block content %}
+    <a class="btn btn-primary" href='{% url "user-add" %}'>
+        list d' utilisateur
+    </a>
+    <table id="example" class="table table-striped table-bordered" style="width:100%">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Nom / Prenom</th>
+                <th>3 prochains cours</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for user in  users %}
+                <tr>
+                    <td>{{user.id}}</td>
+                    <td>{{user.get_name}}</td>
+                    <td>
+                    {% if user.lessons %}
+                        {% for date_lesson in user.lessons.get_3_next_lesson %}
+                            {{date_lesson.date |date:"l d F Y"}} /
+                        {% endfor %}
+                    {% endif %}
+                    </td>
+                    <td>
+                        <a href="{%url 'user-edit' user.id %}">edit</a> / 
+                        <a href="{% url 'user-del' user.id %}">del</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

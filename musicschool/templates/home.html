@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+{% block title %}Home{% endblock %}
+{% block content %}
+	{% if user.is_authenticated %}
+		<p>
+			Bonjour {{ user.username }} !
+		</p>
+		<p>
+			Mes 3 prochains cours : 
+		</p>
+		<p>
+			{% if request.user.user_information.lessons %}
+				{% for date_lesson in user.user_information.lessons.get_3_next_lesson %}
+					{{date_lesson.date |date:"l d F Y"}} /
+				{% endfor %}
+			{% endif %}
+		</p>
+			
+		
+		
+		<br/>
+		{% if membergroup is not None %}
+		<hr>
+
+			<h2>
+				Mes cours du groupe {{membergroup}}: 
+			</h2>
+			<br/>
+			<div class="row">
+				{% for article in  membergroup.articles.all %}
+					<div class="col-sm-4 margin-bottom-25">
+						<div class="card" />
+							<div class="card-body">
+								<h5 class="card-title">{{article.title}}</h5>
+								<p>
+									{{article.content}}
+								</p>
+							</div>
+							<div class="card-footer">
+								<a href="{% url 'article-detail' article.id %}">
+									Voir plus...
+								</a>
+							</div>
+						</div>
+					</div>
+				{% endfor %}
+			</div>
+		{% else %}
+		<p>	
+			Compte en attente de validation
+		</p>
+		{% endif %}
+	{% else %}
+	    <p>You are not logged in</p>
+	    a href="{% url 'login' %}">login</a>
+	{% endif %}
+{% endblock %}
