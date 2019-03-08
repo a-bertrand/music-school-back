@@ -1,4 +1,4 @@
-from django.views.generic.base import View
+from musicschool.libs.logged_view import LoggedProfView
 from django.shortcuts import redirect, render
 from django.contrib.auth import authenticate, login
 from musicschool.groups.forms import CategoryForm
@@ -6,7 +6,7 @@ from musicschool.groups.models import Category
 from django.shortcuts import get_object_or_404
 
 
-class CategoryListView(View):
+class CategoryListView(LoggedProfView):
     template_name = "prof/category/category_list.html"
 
     def get(self, request):
@@ -18,7 +18,7 @@ class CategoryListView(View):
         )
 
 
-class CategoryManageView(View):
+class CategoryManageView(LoggedProfView):
     template_name = "prof/category/category_add_edit.html"
 
     def get(self, request, category_id = None):
@@ -53,5 +53,9 @@ class CategoryManageView(View):
             return redirect('category-list')
 
 
-class CategoryDeleteView(View):
-    pass
+class CategoryDeleteView(LoggedProfView):
+    def get(self, request, category_id = None):
+        if category_id:
+            category = get_object_or_404(Category, pk=media_id)
+            category.delete()
+        return redirect('category-list')

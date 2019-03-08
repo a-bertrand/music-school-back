@@ -1,9 +1,10 @@
 from django.views.generic import View
+from musicschool.libs.logged_view import LoggedStudentView
 from django.shortcuts import redirect, render
 from  musicschool.groups.models import MemberGroup, Media, Article
 
 
-class StudentView(View):
+class StudentView(LoggedStudentView):
     template_name = 'student/home.html'
 
     def get(self, request):

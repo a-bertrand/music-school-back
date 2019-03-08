@@ -1,8 +1,8 @@
-from django.views.generic import TemplateView
+from musicschool.libs.logged_view import LoggedProfView
 from django.shortcuts import redirect, render
 from  musicschool.groups.models import MemberGroup, Media, Article
 
-class ProfView(TemplateView):
+class ProfView(LoggedProfView):
     template_name = 'prof/home.html'
 
     def get(self, request):

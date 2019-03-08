@@ -1,4 +1,4 @@
-from django.views.generic.base import View
+from musicschool.libs.logged_view import LoggedProfView
 from django.shortcuts import redirect, render
 from django.contrib.auth import authenticate, login
 from musicschool.groups.forms import MemberGroupForm
@@ -6,7 +6,7 @@ from musicschool.groups.models import MemberGroup
 from django.shortcuts import get_object_or_404
 
 
-class MemberGroupListView(View):
+class MemberGroupListView(LoggedProfView):
     template_name = "prof/MemberGroup/MemberGroup_list.html"
 
     def get(self, request):
@@ -18,7 +18,7 @@ class MemberGroupListView(View):
         )
 
 
-class MemberGroupManageView(View):
+class MemberGroupManageView(LoggedProfView):
     template_name = "prof/MemberGroup/MemberGroup_add_edit.html"
 
     def get(self, request, member_group_id = None):
@@ -50,8 +50,12 @@ class MemberGroupManageView(View):
             member_group_form = MemberGroupForm(request.POST, request.FILES)
         if member_group_form.is_valid():
             member_group_form.save()
-            return redirect('MemberGroup-list')
+            return redirect('membergroup-list')
 
 
-class MemberGroupDeleteView(View):
-    pass
+class MemberGroupDeleteView(LoggedProfView):
+    def get(self, request, member_group_id = None):
+        if member_group_id:
+            member_group = get_object_or_404(MemberGroup, pk=member_group_id)
+            member_group.delete()
+        return redirect('membergroup-list')

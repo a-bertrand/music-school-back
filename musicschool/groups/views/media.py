@@ -1,4 +1,5 @@
 from django.views.generic.base import View
+from musicschool.libs.logged_view import LoggedProfView
 from django.shortcuts import redirect, render
 from django.contrib.auth import authenticate, login
 from musicschool.groups.forms import MediaForm
@@ -6,7 +7,7 @@ from musicschool.groups.models import Media
 from django.shortcuts import get_object_or_404
 
 
-class MediaListView(View):
+class MediaListView(LoggedProfView):
     template_name = "prof/media/media_list.html"
 
     def get(self, request):
@@ -18,7 +19,7 @@ class MediaListView(View):
         )
 
 
-class MediaManageView(View):
+class MediaManageView(LoggedProfView):
     template_name = "prof/media/media_add_edit.html"
 
     def get(self, request, media_id = None):
@@ -53,5 +54,9 @@ class MediaManageView(View):
             return redirect('media-list')
 
 
-class MediaDeleteView(View):
-    pass
+class MediaDeleteView(LoggedProfView):
+    def get(self, request, media_id = None):
+        if media_id:
+            media = get_object_or_404(Media, pk=media_id)
+            media.delete()
+        return redirect('media-list')
