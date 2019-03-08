@@ -60,7 +60,7 @@
 			{% if media.video %}
 				<button onclick="setPlaySpeed()" type="button">Ralenti </button>
 				<button onclick="ResetPlaySpeed()" type="button">Retour vitesse normal </button>
-				<video width="320" height="240" controls>
+				<video width="800" height="600" controls>
 					<source src="{{media.video.url}}" type="video/mp4" controls>
 					Votre navigateur de supporte pas les vidéos
 				</video>
@@ -83,9 +83,7 @@
 				<div class="col-md-12">
 					{% include "tabplayer/tabplayer.html" with tab_file=media.guitarpro.url %}
 				</div>
-				
 			{% endif %}
-			
 		{% endfor %}
 	</div>
 {% endblock %}

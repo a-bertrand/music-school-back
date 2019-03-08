@@ -24,9 +24,11 @@
     
     <button id="playPause" class="btn btn-primary"><i class="fa fa-play"></i><i class="fa fa-pause"></i></button>
 
-    <div id="alphaTab"  data-file='{{tab_file}}'
-                       data-player='{% static "tabplayer/lib/alphaTab/default.sf2" %}'
-                       data-player-offset="[-10,-70]"></div>
+    <div    id="alphaTab" 
+            data-file='{{tab_file}}'
+            data-player='{% static "tabplayer/lib/alphaTab/default.sf2" %}'
+            data-player-offset="[-10,-70]">
+    </div>
     
     <script type="text/javascript">
         var at = $('#alphaTab');

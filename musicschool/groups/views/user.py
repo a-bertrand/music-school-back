@@ -41,7 +41,7 @@ class RegistrationView(View):
             login(request, user)
             return redirect('home')
         else:
-            form = UserCreationForm()
+            return render(request, 'registration/signup.html', {'form':form})
 
 
 class UserListView(View):

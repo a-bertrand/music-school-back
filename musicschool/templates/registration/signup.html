@@ -1,22 +1,9 @@
 {% extends 'base.html' %}
 
 {% block content %}
+	{% include 'common/form_error_messages.html' with form=form %}
 	<h2>Enregistrement</h2>
 	<hr/>
-	{% if form.errors %}
-		{% for field in form %}
-			{% for error in field.errors %}
-				<div class="alert alert-danger">
-					<strong>{{ error|escape }}</strong>
-				</div>
-			{% endfor %}
-		{% endfor %}
-		{% for error in form.non_field_errors %}
-			<div class="alert alert-danger">
-				<strong>{{ error|escape }}</strong>
-			</div>
-		{% endfor %}
-	{% endif %}
 	<form method="post">
 		{% csrf_token %}
 		<div class="row">

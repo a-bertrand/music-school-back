@@ -8,12 +8,14 @@ https://docs.djangoproject.com/en/2.1/topics/settings/
 
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/2.1/ref/settings/
-"""
 
+"""
 import os
+from os.path import pardir, abspath, dirname, join
+
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+BASE_DIR = dirname(abspath(join(__file__, pardir)))
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.1/howto/deployment/checklist/
@@ -65,7 +67,7 @@ ROOT_URLCONF = 'musicschool.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(os.path.dirname(__file__), 'templates')],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

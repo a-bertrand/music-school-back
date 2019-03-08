@@ -2,6 +2,7 @@
 {% load crispy_forms_tags %}
 {% block title %}Ajouter un utilisateur{% endblock %}
 {% block content %}
+    {% include 'common/form_error_messages.html' with form=user_form %}
 	<form method="post" novalidate  >
 		{% csrf_token %}
 		<fieldset>
