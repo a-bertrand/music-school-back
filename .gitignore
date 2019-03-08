@@ -12,8 +12,7 @@ include/
 bin/
 .vscode/
 tcl/
-Lib/
-musicschool/Lib
+
 musicschool/include
 musicschool/db.sqlite3
 musicschool/musicschool__pycache__
