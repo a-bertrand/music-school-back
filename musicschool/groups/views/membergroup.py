@@ -7,7 +7,7 @@ from django.shortcuts import get_object_or_404
 
 
 class MemberGroupListView(LoggedProfView):
-    template_name = "prof/MemberGroup/MemberGroup_list.html"
+    template_name = "prof/membergroup/membergroup_list.html"
 
     def get(self, request):
         membergroups = MemberGroup.objects.all()
@@ -19,7 +19,7 @@ class MemberGroupListView(LoggedProfView):
 
 
 class MemberGroupManageView(LoggedProfView):
-    template_name = "prof/MemberGroup/MemberGroup_add_edit.html"
+    template_name = "prof/membergroup/membergroup_add_edit.html"
 
     def get(self, request, member_group_id = None):
         if member_group_id:
