@@ -1,27 +1,30 @@
 {% extends 'base.html' %}
 {% block content %}
-    <a class="btn btn-primary" href='{% url "membergroup-add" %}'>
-        Ajouter un groupe
-    </a>
-    <table id="example" class="table table-striped table-bordered" style="width:100%">
-        <thead>
-            <tr>
-                <th>#</th>
-                <th>Nom</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for membergroup in  membergroups %}
+	{% include "layout/header.html"%}
+    <div class="container">
+        <a class="btn btn-primary margin-bottom-25" href='{% url "membergroup-add" %}'>
+            Ajouter un groupe
+        </a>
+        <table id="example" class="table table-striped table-bordered" style="width:100%">
+            <thead>
                 <tr>
-                    <td>{{membergroup.id}}</td>
-                    <td>{{membergroup.name}}</td>
-                    <td>
-                        <a href="{% url 'membergroup-edit' membergroup.id %}">edit</a> / 
-                        <a href="{% url 'membergroup-del' membergroup.id %}">del</a>
-                    </td>
+                    <th>#</th>
+                    <th>Nom</th>
+                    <th>Actions</th>
                 </tr>
-            {% endfor %}
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+                {% for membergroup in  membergroups %}
+                    <tr>
+                        <td>{{membergroup.id}}</td>
+                        <td>{{membergroup.name}}</td>
+                        <td>
+                            <a href="{% url 'membergroup-edit' membergroup.id %}">edit</a> / 
+                            <a href="{% url 'membergroup-del' membergroup.id %}">del</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
 {% endblock %}

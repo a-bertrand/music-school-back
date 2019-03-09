@@ -1,13 +1,17 @@
 {% extends 'base.html' %}
 {% load crispy_forms_tags %}
-{% block title %}Ajouter un article{% endblock %}
 {% block content %}
-	{% include 'common/form_error_messages.html' with form=article_form %}
-	<form method="post" novalidate>
-		{% csrf_token %}
-		<fieldset>
-			{{ article_form|crispy }}
-		</fieldset>
-		<button type="submit" class="btn btn-success">Valider l'article</button>
-	</form>
+	{% include "layout/header.html"%}
+    <div class="container">
+		{% include 'common/form_error_messages.html' with form=article_form %}
+		<div class="container">
+			<form method="post" novalidate>
+				{% csrf_token %}
+				<fieldset>
+					{{ article_form|crispy }}
+				</fieldset>
+				<button type="submit" class="btn btn-success">Valider l'article</button>
+			</form>
+		</div>
+	</div>
 {% endblock %}

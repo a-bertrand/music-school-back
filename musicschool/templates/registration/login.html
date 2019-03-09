@@ -3,16 +3,16 @@
 {% block title %}Login{% endblock %}
 
 {% block content %}
-  <div class="container">
+  <div id="login-page">
     <div class="row">
-      <div class="col-md-3"></div>
-      <div class="col-md-6">
+      <div class="col-md-4"></div>
+      <div class="col-md-4 login-box">
         <fieldset align="center">
           {% if user.is_authenticated %}
             Votre compte est en attente d'activation
             <p><a href="{% url 'logout' %}">logout</a></p>
           {% else %}
-          <h2>Connexion</h2>
+          <h2>Connexion à l'école d'Ancenis</h2>
           <form method="post">
             {% csrf_token %}
             <div class="form-group">
@@ -30,7 +30,7 @@
           </a>
         </fieldset>
       </div>
-      <div class="col-md-3"></div>
+      <div class="col-md-4"></div>
     </div>
   </div>
   {% endif %}

@@ -1,89 +1,92 @@
 {% extends 'base.html' %}
 {% block title %}Home{% endblock %}
 {% block content %}
-	<h2>Article: {{article.title}}</h2>
-	<p>
-		{{article.content}}
-	</p>
-	<div class="row">
-		<div class="col-md-12 box-left-dl">
-			<h4>Fichiers disponibles</h4>
-			<ul>
-				{% for media in article.media.all %}
-					{% if media.image %}
-					<li>
-						<a href="{{media.image.url}}">
-							<i class=" fa fa-file-image"></i>
-							Fichier image : {{media.name}}
-						</a>
-					</li>
-					{% endif %}
-					{% if media.audio %}
-					<li>
-						<a href="{{media.audio.url}}">
-							<i class="fa fa-file-audio"></i>
-							Fichier audio : {{media.name}}
-						</a>
-					</li>
-					{% endif %}
-					{% if media.pdf %}
-					<li>
-						<a href="{{media.pdf.url}}">
-							<i class=" fa fa-file-pdf"></i>
-							Fichier pdf : {{media.name}}
-						</a>
-					</li>
-					{% endif %}
-					{% if media.guitarpro %}
+	{% include "layout/header.html"%}
+    <div class="container">
+		<h2>Article: {{article.title}}</h2>
+		<p>
+			{{article.content}}
+		</p>
+		<div class="row">
+			<div class="col-md-12 box-left-dl">
+				<h4>Fichiers disponibles</h4>
+				<ul>
+					{% for media in article.media.all %}
+						{% if media.image %}
 						<li>
-							<a href="{{media.guitarpro.url}}">
-								<i class=" fa fa-file-pdf"></i>
-								Fichier GP : {{media.name}}
+							<a href="{{media.image.url}}">
+								<i class=" fa fa-file-image"></i>
+								Fichier image : {{media.name}}
 							</a>
 						</li>
-					{% endif %}
-				{% endfor %}
-			</ul>
+						{% endif %}
+						{% if media.audio %}
+						<li>
+							<a href="{{media.audio.url}}">
+								<i class="fa fa-file-audio"></i>
+								Fichier audio : {{media.name}}
+							</a>
+						</li>
+						{% endif %}
+						{% if media.pdf %}
+						<li>
+							<a href="{{media.pdf.url}}">
+								<i class=" fa fa-file-pdf"></i>
+								Fichier pdf : {{media.name}}
+							</a>
+						</li>
+						{% endif %}
+						{% if media.guitarpro %}
+							<li>
+								<a href="{{media.guitarpro.url}}">
+									<i class=" fa fa-file-pdf"></i>
+									Fichier GP : {{media.name}}
+								</a>
+							</li>
+						{% endif %}
+					{% endfor %}
+				</ul>
+			</div>
 		</div>
-	</div>
-	<div class="row">
-		{% for media in article.media.all %}
-			{% if media.image %}
-				<img src='{{media.image.url}}'  class="img-fluid" />
-			{% endif %}
-			{% if media.audio %}
-				<audio controls="controls">
-					<source src="{{media.audio.url}}.mp3" type="audio/mp3" />
-					Votre navigateur n'est pas compatible
-				</audio>
-			{% endif %}
-			{% if media.video %}
-				<button onclick="setPlaySpeed()" type="button">Ralenti </button>
-				<button onclick="ResetPlaySpeed()" type="button">Retour vitesse normal </button>
-				<video width="800" height="600" controls>
-					<source src="{{media.video.url}}" type="video/mp4" controls>
-					Votre navigateur de supporte pas les vidéos
-				</video>
-			{% endif %}
-			{% if media.youtubeurl %}
-				<iframe src="{{media.get_youtube_url_clean}}"
-					frameborder="0"/>
-				<script>
-					let vid = document.getElementById("myVideo");
-					function ResetPlaySpeed() { 
-						vid.playbackRate = 1;
-					} 
-					function setPlaySpeed() { 
-						vid.playbackRate = 0.5;
-					} 
-				</script> 
-			{% endif %}
-			{% if media.guitarpro %}
-				<p> tablature :)</p>
-				<div class="col-md-12">
-					{% include "tabplayer/tabplayer.html" with tab_file=media.guitarpro.url %}
-				</div>
-			{% endif %}
-		{% endfor %}
+		<div class="row">
+			{% for media in article.media.all %}
+				{% if media.image %}
+					<img src='{{media.image.url}}'  class="img-fluid" />
+				{% endif %}
+				{% if media.audio %}
+					<audio controls="controls">
+						<source src="{{media.audio.url}}.mp3" type="audio/mp3" />
+						Votre navigateur n'est pas compatible
+					</audio>
+				{% endif %}
+				{% if media.video %}
+					<button onclick="setPlaySpeed()" type="button">Ralenti </button>
+					<button onclick="ResetPlaySpeed()" type="button">Retour vitesse normal </button>
+					<video width="800" height="600" controls>
+						<source src="{{media.video.url}}" type="video/mp4" controls>
+						Votre navigateur de supporte pas les vidéos
+					</video>
+				{% endif %}
+				{% if media.youtubeurl %}
+					<iframe src="{{media.get_youtube_url_clean}}"
+						frameborder="0"/>
+					<script>
+						let vid = document.getElementById("myVideo");
+						function ResetPlaySpeed() { 
+							vid.playbackRate = 1;
+						} 
+						function setPlaySpeed() { 
+							vid.playbackRate = 0.5;
+						} 
+					</script> 
+				{% endif %}
+				{% if media.guitarpro %}
+					<p> tablature :)</p>
+					<div class="col-md-12">
+						{% include "tabplayer/tabplayer.html" with tab_file=media.guitarpro.url %}
+					</div>
+				{% endif %}
+			{% endfor %}
+		</div>
 	</div>
 {% endblock %}

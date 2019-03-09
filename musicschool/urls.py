@@ -30,7 +30,8 @@ from musicschool.groups.views import (
 )
 
 urlpatterns = [
-	path('', auth_views.LoginView.as_view(), name="login"),
+    path('', auth_views.LoginView.as_view(), name="home"),
+	path('/', auth_views.LoginView.as_view(), name="home"),
     path('admin/', admin.site.urls, name='admin'),
     path('accounts/register/', RegistrationView.as_view(), name='register'),
     path('home', home_redirect, name='home'),
