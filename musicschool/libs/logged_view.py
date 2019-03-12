@@ -1,5 +1,6 @@
 from django.views.generic import View
 from musicschool.groups.models import SchoolRight
+from django.shortcuts import redirect
 
 # school/3/login
 

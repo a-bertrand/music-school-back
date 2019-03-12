@@ -12,6 +12,11 @@ include/
 bin/
 .vscode/
 tcl/
+Scripts/
+Lib/
+db.sqlite3
+pip-selfcheck.json
+pyvenv.cfg
 
 musicschool/include
 musicschool/db.sqlite3

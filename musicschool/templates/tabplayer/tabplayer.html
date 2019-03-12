@@ -15,19 +15,18 @@
     href="https://cdnjs.cloudflare.com/ajax/libs/mermaid/8.0.0/mermaid.core.js" 
     integrity="sha256-iQujpTJhJRTMEzD8BvzI363exvrijC3bjUy8yty4tRc=" crossorigin="anonymous" />
 	<!-- Latest compiled and minified CSS -->
-	<link href='{% static "tabplayer/css/AdminLTE.css" %}' rel="stylesheet" />
-	<link href='{% static "tabplayer/css/theme.css" %}' rel="stylesheet" />
 	<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
-	<link href='{% static "tabplayer/css/override.css" %}' rel="stylesheet" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/9.7.2/bootstrap-slider.min.js" integrity="sha256-dd5QxcG/E8fb/H/iIQann2y2EDS0nEMVI56yYWFeeW4=" crossorigin="anonymous"></script>    
     <link rel="stylesheet" href='{% static "tabplayer/support/demo.css" %}' />
     
     <button id="playPause" class="btn btn-primary"><i class="fa fa-play"></i><i class="fa fa-pause"></i></button>
 
-    <div    id="alphaTab" 
-            data-file='{{tab_file}}'
-            data-player='{% static "tabplayer/lib/alphaTab/default.sf2" %}'
-            data-player-offset="[-10,-70]">
+    <div    
+        id="alphaTab" 
+        data-file='{{tab_file}}'
+        data-player='{% static "tabplayer/lib/alphaTab/default.sf2" %}'
+        data-player-offset="[-10,-70]"
+    >
     </div>
     
     <script type="text/javascript">
@@ -60,11 +59,6 @@
         
         //
         // 3. Setup UI controls and use API to control the playback 
-        
-        $('#print').click(function() { 
-            at.alphaTab('print');
-        });
-        
         $('#playPause').click(function(){
             at.alphaTab('playPause');
         });
