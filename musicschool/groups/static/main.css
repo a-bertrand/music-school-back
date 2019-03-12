@@ -20,7 +20,8 @@ nav.navbar{
     padding-top: 40px;
 }    
 .box-left-dl{
-    border:1px black solid;
+    border: 1px black solid;
+    padding: 2%;
 }
 body{
     background-image: url(https://images.wallpaperscraft.com/image/guitar_music_strings_bass_guitar_electric_guitar_82964_1920x1080.jpg);
@@ -31,11 +32,17 @@ body{
     height: 100%;
 }
 
+li, ul {
+	list-style: none !important;
+}
+
 .container{
+    margin-top: -56px;
     background-color: rgba(255,255,255,0.8);
-    padding:4%;
-    border:1 px solid black;
-    height: 100vh;
+    padding: 4%;
+    height: auto;
+    min-height: 100vh;
+    padding-top: 100px;
 }
 .login-box{
     margin-top: 25vh !important;

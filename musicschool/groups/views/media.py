@@ -52,6 +52,14 @@ class MediaManageView(LoggedProfView):
         if media_form.is_valid():
             media_form.save()
             return redirect('media-list')
+        else:
+            return render(
+                request, 
+                self.template_name,
+                {
+                    'media_form': media_form
+                }
+            ) 
 
 
 class MediaDeleteView(LoggedProfView):

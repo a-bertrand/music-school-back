@@ -3,6 +3,9 @@
 		<a class="navbar-brand" href="{% url 'home' %}">
 			Ecole de musique d'Ancenis
 		</a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
 		{% if user.is_staff %} 
 			{% include "layout/header_prof.html"%}
 		{% elif user.is_authenticated and user.user_information.is_activate %}
