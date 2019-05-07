@@ -4,18 +4,18 @@ from django.shortcuts import redirect, render
 from  musicschool.groups.models import MemberGroup, Media, Article
 
 
-class StudentView(LoggedStudentView):
-    template_name = 'student/home.html'
+class StudentView(View):
+    template_name = 'strudent/home.html'
 
     def get(self, request):
         if request.user:
             if request.user.is_staff:
                 return redirect('/admin')
             elif request.user.is_authenticated:
-                membergroup =  request.user.erp_user.members_group.all()[0]
+                membergroup = MemberGroup.objects.filter(members=request.user.user_information).first()
                 return render(
                     request, 
-                    'home.html',
+                    self.template_name,
                     {
                         'membergroup':membergroup,
                     }
