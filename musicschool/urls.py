@@ -29,9 +29,11 @@ from musicschool.groups.views import (
     UserDeleteView
 )
 
+from musicschool.contact.views import v1_urls
+
 urlpatterns = [
     path('', auth_views.LoginView.as_view(), name="home"),
-	path('/', auth_views.LoginView.as_view(), name="home"),
+    path("v1/", include(v1_urls)),
     path('admin/', admin.site.urls, name='admin'),
     path('accounts/register/', RegistrationView.as_view(), name='register'),
     path('home', home_redirect, name='home'),

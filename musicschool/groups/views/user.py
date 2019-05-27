@@ -60,7 +60,6 @@ class UserManageView(View):
     template_name = "prof/users/user_add_edit.html"
 
     def get(self, request, user_id = None):
-        
         if user_id:
             erp_user = get_object_or_404(ERPUser, pk=user_id)
             user_form = UserForm(instance=erp_user)
@@ -103,7 +102,9 @@ class UserManageView(View):
             user_form = UserForm(request.POST)
         if user_form.is_valid():
             user_form.save()
-            return redirect('user-list')
+            return render_to_response('my_template.html', {'user_form': user_form})
+        else :
+            return render_to_response('my_template.html', {'user_form': user_form})
 
     # asked the date of the first lesson
     def create_a_year_of_lesson(self, date_of_the_first_lesson, erp_user):

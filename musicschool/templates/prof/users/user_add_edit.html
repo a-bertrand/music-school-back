@@ -40,7 +40,7 @@
                 <div class="row">
                     {% for date_lesson in erp_user.lessons.get_next_lesson %}
                         <div class="col-md-3">
-                            {{date_lesson.date |date:"l d F Y"}}
+                            | {{date_lesson.date |date:"l d F Y"}} <i data-id="{{date_lesson.id}}" class="fa fa-times"></i>|
                         </div>
                     {% endfor %}
                 </div>

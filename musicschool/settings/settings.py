@@ -46,7 +46,7 @@ INSTALLED_APPS = [
     'jquery',
     
     'musicschool.groups',
-    #'musicschool.contact',
+    'musicschool.contact',
     
 ]
 

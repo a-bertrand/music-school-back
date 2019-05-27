@@ -1,1 +1,1 @@
-from .donation import ContactSerializer
+from .contact import ContactSerializer

@@ -1,6 +1,6 @@
 from musicschool.contact.models import Contact
 from rest_framework import viewsets
-from donation_service.donation.serializers.v1 import CartSerializer
+from musicschool.contact.serializers.v1 import ContactSerializer
 
 
 # ViewSets define the view behavior.
