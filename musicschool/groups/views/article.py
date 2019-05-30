@@ -4,6 +4,7 @@ from django.shortcuts import redirect, render
 from django.contrib.auth.models import User
 from musicschool.groups.forms import ArticleForm
 from django.shortcuts import get_object_or_404
+from django.contrib import messages
 
 
 # Detail 
@@ -81,11 +82,13 @@ class ArticleManageView(LoggedProfView):
             article_form = ArticleForm(request.POST)
         if article_form.is_valid():
             article_form.save()
-            return redirect('article-list')
+            messages.success(request, "Mise à jour validé")
+        return redirect('article-list')
 
 #Delete
 class ArticleDeleteView(LoggedProfView):            
     def get(self, request, article_id = None):
         article = get_object_or_404(Article, pk=article_id)
         article.delete()
+        messages.success(request, "Article supprimé")
         return redirect('article-list')

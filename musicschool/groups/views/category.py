@@ -4,6 +4,7 @@ from django.contrib.auth import authenticate, login
 from musicschool.groups.forms import CategoryForm
 from musicschool.groups.models import Category
 from django.shortcuts import get_object_or_404
+from django.contrib import messages
 
 
 class CategoryListView(LoggedProfView):
@@ -50,7 +51,8 @@ class CategoryManageView(LoggedProfView):
             category_form = CategoryForm(request.POST, request.FILES)
         if category_form.is_valid():
             category_form.save()
-            return redirect('category-list')
+            messages.success(request, "Mise à jour validé")
+        return redirect('category-list')
 
 
 class CategoryDeleteView(LoggedProfView):

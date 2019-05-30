@@ -4,6 +4,7 @@ from django.contrib.auth import authenticate, login
 from musicschool.groups.forms import MemberGroupForm
 from musicschool.groups.models import MemberGroup
 from django.shortcuts import get_object_or_404
+from django.contrib import messages
 
 
 class MemberGroupListView(LoggedProfView):
@@ -50,7 +51,8 @@ class MemberGroupManageView(LoggedProfView):
             member_group_form = MemberGroupForm(request.POST, request.FILES)
         if member_group_form.is_valid():
             member_group_form.save()
-            return redirect('membergroup-list')
+        messages.success(request, "Mise à jour validé")
+        return redirect('membergroup-list')
 
 
 class MemberGroupDeleteView(LoggedProfView):

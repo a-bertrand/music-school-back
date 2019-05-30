@@ -5,6 +5,8 @@ from django.contrib.auth import authenticate, login
 from musicschool.groups.forms import MediaForm
 from musicschool.groups.models import Media
 from django.shortcuts import get_object_or_404
+from django.contrib import messages
+
 
 
 class MediaListView(LoggedProfView):
@@ -51,15 +53,14 @@ class MediaManageView(LoggedProfView):
             media_form = MediaForm(request.POST, request.FILES)
         if media_form.is_valid():
             media_form.save()
-            return redirect('media-list')
-        else:
-            return render(
-                request, 
-                self.template_name,
-                {
-                    'media_form': media_form
-                }
-            ) 
+            messages.success(request, "Mise à jour validé")
+        return render(
+            request, 
+            self.template_name,
+            {
+                'media_form': media_form
+            }
+        ) 
 
 
 class MediaDeleteView(LoggedProfView):

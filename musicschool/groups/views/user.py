@@ -12,6 +12,7 @@ from musicschool.groups.models import (
 )
 from django.shortcuts import get_object_or_404
 from musicschool.groups.forms import UserForm
+from django.contrib import messages
 
 
 class RegistrationView(View):
@@ -102,9 +103,8 @@ class UserManageView(View):
             user_form = UserForm(request.POST)
         if user_form.is_valid():
             user_form.save()
-            return render_to_response('my_template.html', {'user_form': user_form})
-        else :
-            return render_to_response('my_template.html', {'user_form': user_form})
+            messages.success(request, "Mise à jour validé")
+        return render(request, self.template_name, {'user_form': user_form})
 
     # asked the date of the first lesson
     def create_a_year_of_lesson(self, date_of_the_first_lesson, erp_user):
