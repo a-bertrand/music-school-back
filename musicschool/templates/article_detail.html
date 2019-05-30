@@ -23,12 +23,10 @@
 							{% endif %}
 							{% if media.audio %}
 							<li>
+								<a href="{{media.audio.url}}">
 									<i class="fa fa-file-audio"></i>
-									 Fichier audio : <br/>
-									<audio controls="controls">
-										<source src="{{media.audio.url}}" type="audio/mp3" />
-										Votre navigateur n'est pas compatible
-									</audio>
+									Fichier audio : {{media.name}}
+								</a>
 							</li>
 							{% endif %}
 							{% if media.pdf %}
@@ -52,9 +50,10 @@
 				</div>
 			</div>
 		</div>
+		<hr>
 		<div class="row">
-			{% for media in article.media.all %}
-				{% if media.image %}
+		  {% for media in article.media.all %}
+					{% if media.image %}
 					<img src='{{media.image.url}}'  class="img-fluid" />
 				{% endif %}
 				{% if media.audio %}
@@ -84,6 +83,11 @@
 						} 
 					</script> 
 				{% endif %}
+			{%endfor%}
+		</div>
+		<hr>
+		<div class="row">
+			{% for media in article.media.all %}
 				{% if media.guitarpro %}
 					<div class="col-md-12">
 						{% include "tabplayer/tabplayer.html" with tab_file=media.guitarpro.url %}
